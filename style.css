@@ -255,3 +255,65 @@ footer {
 .cover-buttons a:hover {
   background-color: #8c653a;
 }
+/* 📜 내부 스크롤 박스 (공지, 긴 목록용) */
+.scroll-box {
+  max-height: 260px;          /* 박스 세로 크기 (원하면 숫자 조절) */
+  overflow-y: auto;           /* 세로 스크롤 생성 */
+  padding-right: 6px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: #fffdf8;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* 스크롤 있는 박스 안 목록 정리 */
+.scroll-box ul {
+  list-style: none;
+  margin: 0;
+  padding: 8px 10px 10px;
+}
+.scroll-box li {
+  margin: 4px 0;
+  padding: 6px 6px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  font-size: 13px;
+}
+.scroll-box li:last-child {
+  border-bottom: none;
+}
+
+/* 🌙 인물 상세 모달 스타일 */
+.modal {
+  display: none; /* 처음엔 숨김 */
+  position: fixed;
+  z-index: 300;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 배경 흐림 */
+  backdrop-filter: blur(2px);
+}
+.modal-content {
+  background-color: #fffdf8;
+  margin: 10% auto;
+  padding: 20px 26px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 480px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  animation: zoomIn 0.3s ease;
+}
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.close-btn {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  color: #a87b48;
+}
+.close-btn:hover {
+  color: #6b4b2d;
+}
