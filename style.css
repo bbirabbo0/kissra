@@ -211,3 +211,47 @@ footer {
   transform: translateY(0);
   pointer-events: auto;
 }
+
+/* 🌸 메인 표지 섹션 */
+.hero-cover {
+  height: 70vh;
+  background: linear-gradient(
+      rgba(255, 252, 246, 0.9),
+      rgba(255, 252, 246, 0.96)
+    );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.cover-content h1 {
+  font-size: 34px;
+  color: #3b2a20;
+  margin-bottom: 10px;
+  letter-spacing: 0.18em;
+}
+
+.cover-content p {
+  color: #5e4938;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.cover-buttons a {
+  display: inline-block;
+  margin: 0 6px;
+  padding: 9px 18px;
+  border-radius: 18px;
+  text-decoration: none;
+  background-color: #a87b48;
+  color: #fffdf5;
+  font-size: 13px;
+  transition: all 0.25s ease;
+}
+
+.cover-buttons a:hover {
+  background-color: #8c653a;
+}
