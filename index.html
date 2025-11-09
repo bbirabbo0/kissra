@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>보선녀 감화록 感化錄</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Noto Serif KR", "Pretendard", -apple-system, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(160,130,90,0.16), transparent),
+        radial-gradient(circle at bottom right, rgba(180,160,120,0.12), transparent),
+        #f8f3e7;
+      color: #333028;
+      line-height: 1.8;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      padding: 24px 32px 14px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background:
+        linear-gradient(to bottom, rgba(248,243,231,0.96), rgba(248,243,231,0.9));
+    }
+
+    .site-title {
+      font-size: 26px;
+      letter-spacing: 0.22em;
+      font-weight: 600;
+      color: #3a2b20;
+    }
+
+    .site-subtitle {
+      margin-top: 4px;
+      font-size: 11px;
+      color: #7a6a56;
+    }
+
+    nav {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    nav a {
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(90,70,50,0.22);
+      background-color: rgba(255,255,255,0.9);
+    }
+
+    nav a:hover {
+      background-color: #e6dcc9;
+    }
+
+    main {
+      padding: 26px 16px 40px;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .intro {
+      font-size: 12px;
+      color: #5d5244;
+      margin-bottom: 18px;
+    }
+
+    /* 감정의 지도 바 */
+    .map-wrap {
+      margin: 0 0 26px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: rgba(255,252,245,0.96);
+      font-size: 10px;
+      color: #84735e;
+    }
+
+    .map-label {
+      font-size: 10px;
+      margin-bottom: 6px;
+      color: #a08866;
+    }
+
+    .map-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .map-point {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(160,136,100,0.45);
+      background: #faf3e3;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .map-point span.icon {
+      font-size: 10px;
+    }
+
+    section {
+      margin-bottom: 34px;
+    }
+
+    section h2 {
+      margin: 0 0 2px;
+      font-size: 17px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      color: #3b2d22;
+    }
+
+    section h2 .han {
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      font-size: 14px;
+    }
+
+    section h2 .en {
+      font-size: 9px;
+      color: #9b8b76;
+      letter-spacing: 0.16em;
+    }
+
+    .section-note {
+      font-size: 10px;
+      color: #8c7a63;
+      margin-bottom: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: #fdf8ee;
+      border-radius: 14px;
+      padding: 10px 11px 9px;
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: relative;
+    }
+
+    .card-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #3c3127;
+    }
+
+    .card-place {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 8px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background-color: #eee0c7;
+      color: #6c5740;
+      margin-bottom: 2px;
+      align-self: flex-start;
+    }
+
+    .card-place::before {
+      content: "📍";
+      font-size: 9px;
+    }
+
+    .card-text {
+      font-family: "Noto Serif KR", serif;
+      font-size: 10px;
+      color: #584a3a;
+      white-space: pre-line;
+    }
+
+    .card-tagline {
+      font-size: 8px;
+      color: #a49076;
+      margin-top: 1px;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 18px 14px 10px;
+      }
+      main {
+        padding: 18px 10px 26px;
+      }
+      .site-title {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="site-title">보선녀 감화록 感化錄</div>
+    <div class="site-subtitle">
+      음식과 노래, 사람과 짐승, 풀과 나무, 그리고 우리가 밟고 지나온 장소들에 대한 보선녀의 짧은 기록.
+    </div>
+    <nav>
+      <a href="#taste">味 음식</a>
+      <a href="#music">樂 노래</a>
+      <a href="#people">人 사람</a>
+      <a href="#animals">獸 동물</a>
+      <a href="#plants">草木 식물</a>
+      <a href="#places">地 장소</a>
+    </nav>
+  </header>
+
+  <main>
+    <p class="intro">
+      이곳은 세상을 거창하게 설명하려는 곳이 아니라,<br/>
+      눈에 머물렀던 것들을, 그때의 공기와 함께 적어 두는 작은 서책입니다.
+    </p>
+
+    <!-- 감정의 작은 지도 -->
+    <div class="map-wrap">
+      <div class="map-label">감정의 작은 지도</div>
+      <div class="map-strip">
+        <div class="map-point"><span class="icon">🏫</span>학교</div>
+        <div class="map-point"><span class="icon">🌊</span>바다</div>
+        <div class="map-point"><span class="icon">⛰️</span>산길</div>
+        <div class="map-point"><span class="icon">📚</span>학원</div>
+        <div class="map-point"><span class="icon">🌳</span>공원</div>
+        <div class="map-point"><span class="icon">🛝</span>놀이터</div>
+        <div class="map-point"><span class="icon">🛒</span>마트 앞</div>
+        <div class="map-point"><span class="icon">🚏</span>버스 정류장</div>
+        <div class="map-point"><span class="icon">🏠</span>집 앞 골목</div>
+      </div>
+    </div>
+
+    <!-- 음식 -->
+    <section id="taste">
+      <h2><span class="han">味</span> 음식 <span class="en">TASTE</span></h2>
+      <div class="section-note">입 안에 남은 온도와 냄새로, 하루를 다시 떠올리는 방.</div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">감귤 — 새벽빛의 단맛</div>
+          <div class="card-place">마트 앞 진열대</div>
+          <div class="card-text">
+한겨울 마트 입구, 박스마다 노란 공기가 가득했다.
+껍질을 벗기기도 전에 손끝에서 햇빛 냄새가 났다.
+춥다고 웅크리던 마음이, 그 잠깐만은 감귤색으로 펴졌다.
+          </div>
+          <div class="card-tagline">겨울 방학, 장바구니 속 작은 태양.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">국밥 — 사람 냄새</div>
+          <div class="card-place">학교 앞 식당</div>
+          <div class="card-text">
+지친 얼굴로 웃던 친구들, 김 서리는 그릇을 사이에 두고 앉았다.
+국물이 끓는 소리와 함께, 오늘 버틴 이야기들이 살짝 풀렸다.
+먼저 따뜻해진 건 배가 아니라 마음이었다.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 노래 -->
+    <section id="music">
+      <h2><span class="han">樂</span> 노래 <span class="en">MUSIC</span></h2>
+      <div class="section-note">이어폰 한쪽으로도 충분했던 밤과 아침의 장면들.</div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">빗소리 위의 재즈</div>
+          <div class="card-place">버스 정류장</div>
+          <div class="card-text">
+유리막 사이로 비가 흘러내리고,
+느린 색소폰이 그 위를 걸어갔다.
+나는 잠시, 어디에도 급하지 않은 사람처럼 숨을 골랐다.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 사람 -->
+    <section id="people">
+      <h2><span class="han">人</span> 사람 <span class="en">PEOPLE</span></h2>
+      <div class="section-note">크게 말하지 않았지만 오래 남은 시선과 손짓.</div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">조용한 끄덕임</div>
+          <div class="card-place">학교 계단참</div>
+          <div class="card-text">
+남아있던 시험지 더미 옆에서, 선생님이 내 쪽을 한번 바라봤다.
+“수고했다”는 말 대신, 가볍게 끄덕인 그 표정 하나가
+그 날의 모든 피곤을 정리해 주었다.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 동물 -->
+    <section id="animals">
+      <h2><span class="han">獸</span> 동물 <span class="en">ANIMALS</span></h2>
+      <div class="section-note">말이 없어서 더 솔직했던 눈동자들.</div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">놀이터의 고양이</div>
+          <div class="card-place">동네 놀이터</div>
+          <div class="card-text">
+미끄럼틀 그림자 밑에서, 작은 고양이가 나를 올려다보았다.
+먼저 눈을 피하지 않은 쪽은 나였다가, 어느새 그 아이였다.
+살짝 스친 털의 감촉이, 하루를 견딘 보상처럼 남았다.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 식물 -->
+    <section id="plants">
+      <h2><span class="han">草木</span> 식물 <span class="en">PLANTS</span></h2>
+      <div class="section-note">계절을 실제로 넘기는 것은, 늘 나뭇잎들이었다.</div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">가로수 은행나무</div>
+          <div class="card-place">학교 가는 길</div>
+          <div class="card-text">
+노란 잎이 길 위에 두껍게 쌓인 날엔, 일부러 천천히 걷게 된다.
+바스락거리는 소리가 쌓여, ‘여기까지 잘 왔다’는 도장을 찍어 준다.
+짧게 스친 가을이 발자국에 남는다.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 장소 -->
+    <section id="places">
+      <h2><span class="han">地</span> 장소 <span class="en">PLACES</span></h2>
+      <div class="section-note">
+학교, 바다, 산, 학원, 공원, 놀이터, 마트.  
+매일 지나치던 곳이, 어느 날 문득 마음의 장면으로 남았던 기록들.
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">해 뜨기 전 바다</div>
+          <div class="card-place">바다</div>
+          <div class="card-text">
+색을 잃은 물결과 차가운 공기만 있는 줄 알았는데,
+멀리 수평선이 아주 옅게 붉어지는 순간,
+아무 말도 못 한 채 그 자리에 서 있었다.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">늦은 밤 창가 자리</div>
+          <div class="card-place">학원</div>
+          <div class="card-text">
+문제는 안 풀리는데 창밖 불빛만 총총했다.
+각자의 방 안에서 누군가도 나처럼 깨어 있겠지 싶어,
+이상하게 덜 외로워졌다.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">텅 빈 공원 벤치</div>
+          <div class="card-place">공원</div>
+          <div class="card-text">
+비 온 뒤의 벤치는 식어 있었지만,
+젖은 흙 냄새와 나무 냄새가 묵은 생각을 끌어내렸다.
+새 잎이 돋을 자리까지 미리 상상하며, 혼자 앉아 숨을 고른다.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">계단 밑 골목</div>
+          <div class="card-place">집 앞 골목</div>
+          <div class="card-text">
+학교 가기 전, 늘 지나치던 골목에 아침 햇살이 기울어 있었다.
+익숙해서 보이지 않던 풍경이, 갑자기 사진처럼 또렷해지는 날이 있다.
+그날 이후로, 나는 이 길을 함부로 투덜거리며 걷지 않게 되었다.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
